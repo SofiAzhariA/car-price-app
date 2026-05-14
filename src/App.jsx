@@ -32,8 +32,6 @@ export default function App() {
   const [vals, setVals] = useState(initVals);
   const [loading, setLoading] = useState(false);
   const [result, setResult] = useState(null);
-  const [nama, setNama] = useState("");
-  const [npm, setNpm] = useState("");
 
   const handleChange = (key, val) => {
     setVals(prev => ({ ...prev, [key]: val }));
@@ -90,21 +88,34 @@ export default function App() {
                       step={f.step}
                       onChange={e => handleChange(f.key, parseFloat(e.target.value))}
                       style={{
-                        width: 80, padding: "4px 8px", border: "1.5px solid #bee3f8",
-                        borderRadius: 8, fontSize: 13, fontWeight: 600, textAlign: "center",
-                        color: "#1a365d", background: "#ebf8ff", outline: "none"
+                        width: 80,
+                        padding: "4px 8px",
+                        border: "1.5px solid #bee3f8",
+                        borderRadius: 8,
+                        fontSize: 13,
+                        fontWeight: 600,
+                        textAlign: "center",
+                        color: "#1a365d",
+                        background: "#ebf8ff",
+                        outline: "none"
                       }}
                     />
-                    <span style={{ fontSize: 11, color: "#718096", minWidth: 28 }}>{f.unit}</span>
+                    <span style={{ fontSize: 11, color: "#718096", minWidth: 28 }}>
+                      {f.unit}
+                    </span>
                   </div>
                 </div>
+
                 <input
                   type="range"
-                  min={f.min} max={f.max} step={f.step}
+                  min={f.min}
+                  max={f.max}
+                  step={f.step}
                   value={vals[f.key]}
                   onChange={e => handleChange(f.key, parseFloat(e.target.value))}
                   style={{ width: "100%", accentColor: "#3182ce", cursor: "pointer" }}
                 />
+
                 <div style={{ display: "flex", justifyContent: "space-between", fontSize: 10, color: "#a0aec0", marginTop: 2 }}>
                   <span>{f.min} {f.unit}</span>
                   <span style={{ color: "#718096", fontSize: 11 }}>{f.desc}</span>
@@ -117,11 +128,18 @@ export default function App() {
               onClick={handlePredict}
               disabled={loading}
               style={{
-                width: "100%", marginTop: 8, padding: "14px 0",
+                width: "100%",
+                marginTop: 8,
+                padding: "14px 0",
                 background: loading ? "#90cdf4" : "#2b6cb0",
-                color: "white", border: "none", borderRadius: 12,
-                fontSize: 15, fontWeight: 700, cursor: loading ? "not-allowed" : "pointer",
-                transition: "all 0.2s", letterSpacing: 0.5
+                color: "white",
+                border: "none",
+                borderRadius: 12,
+                fontSize: 15,
+                fontWeight: 700,
+                cursor: loading ? "not-allowed" : "pointer",
+                transition: "all 0.2s",
+                letterSpacing: 0.5
               }}
             >
               {loading ? "⏳ Menghitung..." : "🔮 Hitung Harga Mobil"}
@@ -132,39 +150,77 @@ export default function App() {
           <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
 
             {/* Result Card */}
-            <div style={{
-              background: result ? "linear-gradient(135deg, #1a365d 0%, #2b6cb0 100%)" : "white",
-              borderRadius: 16, padding: 28, boxShadow: "0 2px 12px rgba(0,0,0,0.1)",
-              minHeight: 180, display: "flex", flexDirection: "column", justifyContent: "center",
-              border: result ? "none" : "2px dashed #bee3f8", transition: "all 0.4s"
-            }}>
+            <div
+              style={{
+                background: result
+                  ? "linear-gradient(135deg, #1a365d 0%, #2b6cb0 100%)"
+                  : "white",
+                borderRadius: 16,
+                padding: 28,
+                boxShadow: "0 2px 12px rgba(0,0,0,0.1)",
+                minHeight: 180,
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "center",
+                border: result ? "none" : "2px dashed #bee3f8",
+                transition: "all 0.4s"
+              }}
+            >
               {!result && !loading && (
                 <div style={{ textAlign: "center", color: "#a0aec0" }}>
                   <div style={{ fontSize: 48 }}>💡</div>
-                  <p style={{ margin: "8px 0 0", fontSize: 14 }}>Atur spesifikasi dan klik tombol untuk melihat prediksi harga</p>
+                  <p style={{ margin: "8px 0 0", fontSize: 14 }}>
+                    Atur spesifikasi dan klik tombol untuk melihat prediksi harga
+                  </p>
                 </div>
               )}
+
               {loading && (
                 <div style={{ textAlign: "center", color: "#3182ce" }}>
                   <div style={{ fontSize: 40 }}>🔄</div>
-                  <p style={{ margin: "8px 0 0", fontSize: 14 }}>Memproses model...</p>
+                  <p style={{ margin: "8px 0 0", fontSize: 14 }}>
+                    Memproses model...
+                  </p>
                 </div>
               )}
+
               {result && (
                 <div style={{ textAlign: "center", color: "white" }}>
-                  <p style={{ margin: "0 0 8px", fontSize: 13, color: "#90cdf4", letterSpacing: 2, textTransform: "uppercase" }}>
+                  <p
+                    style={{
+                      margin: "0 0 8px",
+                      fontSize: 13,
+                      color: "#90cdf4",
+                      letterSpacing: 2,
+                      textTransform: "uppercase"
+                    }}
+                  >
                     Perkiraan Harga Mobil
                   </p>
-                  <div style={{
-                    background: "rgba(255,255,255,0.15)", borderRadius: 12,
-                    padding: "16px 24px", margin: "0 0 12px", backdropFilter: "blur(4px)"
-                  }}>
-                    <p style={{ margin: 0, fontSize: 38, fontWeight: 800, letterSpacing: -1 }}>
-                      ${usdPrice.toLocaleString('en-US')}
+
+                  <div
+                    style={{
+                      background: "rgba(255,255,255,0.15)",
+                      borderRadius: 12,
+                      padding: "16px 24px",
+                      margin: "0 0 12px",
+                      backdropFilter: "blur(4px)"
+                    }}
+                  >
+                    <p
+                      style={{
+                        margin: 0,
+                        fontSize: 38,
+                        fontWeight: 800,
+                        letterSpacing: -1
+                      }}
+                    >
+                      ${usdPrice.toLocaleString("en-US")}
                     </p>
                   </div>
+
                   <p style={{ margin: 0, fontSize: 13, color: "#bee3f8" }}>
-                    ≈ Rp {idrPrice.toLocaleString('id-ID')}
+                    ≈ Rp {idrPrice.toLocaleString("id-ID")}
                   </p>
                 </div>
               )}
@@ -173,14 +229,27 @@ export default function App() {
             {/* Spec Summary */}
             {result && (
               <div style={{ background: "white", borderRadius: 16, padding: 20, boxShadow: "0 2px 12px rgba(0,0,0,0.08)" }}>
-                <h3 style={{ margin: "0 0 12px", fontSize: 14, fontWeight: 600, color: "#1a365d" }}>📊 Ringkasan Spesifikasi</h3>
+                <h3 style={{ margin: "0 0 12px", fontSize: 14, fontWeight: 600, color: "#1a365d" }}>
+                  📊 Ringkasan Spesifikasi
+                </h3>
+
                 <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 8 }}>
                   {FEATURES.map(f => (
-                    <div key={f.key} style={{
-                      background: "#ebf8ff", borderRadius: 8, padding: "8px 12px",
-                      display: "flex", justifyContent: "space-between", alignItems: "center"
-                    }}>
-                      <span style={{ fontSize: 12, color: "#4a5568" }}>{f.icon} {f.label}</span>
+                    <div
+                      key={f.key}
+                      style={{
+                        background: "#ebf8ff",
+                        borderRadius: 8,
+                        padding: "8px 12px",
+                        display: "flex",
+                        justifyContent: "space-between",
+                        alignItems: "center"
+                      }}
+                    >
+                      <span style={{ fontSize: 12, color: "#4a5568" }}>
+                        {f.icon} {f.label}
+                      </span>
+
                       <span style={{ fontSize: 12, fontWeight: 700, color: "#2b6cb0" }}>
                         {vals[f.key]} {f.unit}
                       </span>
@@ -192,7 +261,10 @@ export default function App() {
 
             {/* Model Info */}
             <div style={{ background: "white", borderRadius: 16, padding: 20, boxShadow: "0 2px 12px rgba(0,0,0,0.08)" }}>
-              <h3 style={{ margin: "0 0 12px", fontSize: 14, fontWeight: 600, color: "#1a365d" }}>🤖 Info Model</h3>
+              <h3 style={{ margin: "0 0 12px", fontSize: 14, fontWeight: 600, color: "#1a365d" }}>
+                🤖 Info Model
+              </h3>
+
               <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 8, marginBottom: 12 }}>
                 {[
                   ["Algoritma", "Linear Regression"],
@@ -201,11 +273,17 @@ export default function App() {
                   ["Testing", "20%"],
                 ].map(([label, val]) => (
                   <div key={label} style={{ background: "#f7fafc", borderRadius: 8, padding: "8px 12px" }}>
-                    <p style={{ margin: 0, fontSize: 11, color: "#718096" }}>{label}</p>
-                    <p style={{ margin: "2px 0 0", fontSize: 13, fontWeight: 600, color: "#2d3748" }}>{val}</p>
+                    <p style={{ margin: 0, fontSize: 11, color: "#718096" }}>
+                      {label}
+                    </p>
+
+                    <p style={{ margin: "2px 0 0", fontSize: 13, fontWeight: 600, color: "#2d3748" }}>
+                      {val}
+                    </p>
                   </div>
                 ))}
               </div>
+
               <div style={{ background: "#fffaf0", border: "1px solid #f6e05e", borderRadius: 8, padding: "10px 14px", fontSize: 12, color: "#744210" }}>
                 ⚠️ Prediksi berdasarkan dataset Car_sales.xls. Untuk akurasi optimal, jalankan model di Google Colab dengan data asli.
               </div>
@@ -216,42 +294,13 @@ export default function App() {
               <h3 style={{ margin: "0 0 12px", fontSize: 14, fontWeight: 600, color: "#1a365d", textAlign: "center" }}>
                 👤 Sistem Ini Dibuat Oleh
               </h3>
-              <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 10 }}>
-                <div>
-                  <label style={{ fontSize: 11, color: "#4a5568", display: "block", marginBottom: 4, fontWeight: 600 }}>NAMA :</label>
-                  <input
-                    value={nama}
-                    onChange={e => setNama(e.target.value)}
-                    placeholder="Nama lengkap..."
-                    style={{
-                      width: "100%", padding: "8px 12px", border: "1.5px solid #90cdf4",
-                      borderRadius: 8, fontSize: 13, background: "white",
-                      color: "#1a365d", outline: "none", boxSizing: "border-box"
-                    }}
-                  />
-                </div>
-                <div>
-                  <label style={{ fontSize: 11, color: "#4a5568", display: "block", marginBottom: 4, fontWeight: 600 }}>NPM :</label>
-                  <input
-                    value={npm}
-                    onChange={e => setNpm(e.target.value)}
-                    placeholder="NPM..."
-                    style={{
-                      width: "100%", padding: "8px 12px", border: "1.5px solid #90cdf4",
-                      borderRadius: 8, fontSize: 13, background: "white",
-                      color: "#1a365d", outline: "none", boxSizing: "border-box"
-                    }}
-                  />
-                </div>
+
+              <div style={{ textAlign: "center", color: "#2b6cb0", fontSize: 14, fontWeight: 700 }}>
+                <p>👤 Sofi Azhari Amini</p>
+                <p>🎓 237006026</p>
               </div>
-              {(nama || npm) && (
-                <div style={{ marginTop: 10, textAlign: "center", color: "#2b6cb0", fontSize: 13, fontWeight: 600 }}>
-                  {nama && <span>👤 {nama}</span>}
-                  {nama && npm && <span> · </span>}
-                  {npm && <span>🎓 {npm}</span>}
-                </div>
-              )}
             </div>
+
           </div>
         </div>
       </div>

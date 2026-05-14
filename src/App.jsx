@@ -142,7 +142,7 @@ export default function App() {
                 letterSpacing: 0.5
               }}
             >
-              {loading ? "⏳ Menghitung..." : "🔮 Hitung Harga Mobil"}
+              {loading ? "⏳ Menghitung..." : " Hitung Harga Mobil"}
             </button>
           </div>
 

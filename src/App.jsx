@@ -296,8 +296,8 @@ export default function App() {
               </h3>
 
               <div style={{ textAlign: "center", color: "#2b6cb0", fontSize: 14, fontWeight: 700 }}>
-                <p>👤 Sofi Azhari Amini</p>
-                <p>🎓 237006026</p>
+                <p>Sofi Azhari Amini</p>
+                <p>237006026</p>
               </div>
             </div>
 

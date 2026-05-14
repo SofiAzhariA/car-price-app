@@ -262,7 +262,7 @@ export default function App() {
             {/* Model Info */}
             <div style={{ background: "white", borderRadius: 16, padding: 20, boxShadow: "0 2px 12px rgba(0,0,0,0.08)" }}>
               <h3 style={{ margin: "0 0 12px", fontSize: 14, fontWeight: 600, color: "#1a365d" }}>
-                🤖 Info Model
+                Info Model
               </h3>
 
               <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 8, marginBottom: 12 }}>
